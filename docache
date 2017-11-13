@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# script: docache
+# purpose: cache digital ocean droplet listings
+
+if [ "$1" -eq "" ]; then
+    cache="/var/docache.cache"
+else
+    cache="$1"
+fi
+
+rm $cache
+doctl compute droplet list --no-header > $cache
+

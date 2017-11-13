@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Block for power consumption
+
+power_data=$(upower -i $(upower -e | grep "BAT"))
+percentage=$(echo $power_data | grep -oP "percentage:\s*\K(\d+)")
+state=$(echo $power_data | grep -oP "state:\s\K([\w\-]+)")
+
+case "$state" in
+    "discharging" ) symbol=\ - ;;
+    "charging" | "fully-charged" ) symbol=\ + ;;
+esac
+
+echo "$percentage%$symbol"

@@ -1,0 +1,8 @@
+#!/bin/sh
+
+if [ "$1" == "" ]; then
+    echo "usage: doip <droplet-id>"
+    exit 1
+fi
+
+doctl compute droplet list $1 --no-header --format "PublicIPv4"
