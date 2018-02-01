@@ -1,0 +1,27 @@
+#!/bin/bash
+# push all local changes to github
+
+if [! -e ".git/"]; then
+    echo "gft: $PWD is not a git repository"
+    exit 1
+fi
+
+
+if [-e "$1" ""]; then
+    echo "gft: no message provided"
+    exit 1
+fi
+
+if [-e "$2" ""]; then
+    echo "gft: no remote provided"
+    exit 1
+fi
+
+if [-e "$3" ""]; then
+    echo "gft: no branch provided"
+    exit 1
+fi
+
+git add .
+git commit -m $1
+git push $2 $3
